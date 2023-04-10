@@ -25,8 +25,18 @@ form.addEventListener('input', () => {
 // Обробка події відправки форми
 form.addEventListener('submit', (event) => {
   event.preventDefault();
+  
+  // Перевірка на заповненість полів
+  if (!emailInput.value || !messageInput.value) {
+    alert("Потрібно заповнити всі поля");
+    return;
+  }
+  
+  // Отримання даних з форми
   const state = { email: emailInput.value, message: messageInput.value };
   console.log(state);
+  
+  // Очистка локального сховища і полів форми
   localStorage.removeItem(STORAGE_KEY);
   emailInput.value = '';
   messageInput.value = '';
